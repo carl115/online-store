@@ -9,7 +9,11 @@
 					:href="`/product/${product.id}`"
 					:key="index"
 				>
-					<img :src="product.image" />
+					<img
+						:src="`/storage/images/${product.image}`"
+						v-if="!product.image.startsWith('http')"
+					/>
+					<img :src="product.image" v-else />
 					<h3 class="text-2xl">{{ product.name }}</h3>
 					<p class="text-sm text-slate-300">{{ product.description }}</p>
 					<span class="text-xl">$ {{ product.price }}</span>

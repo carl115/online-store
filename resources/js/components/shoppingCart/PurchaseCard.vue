@@ -1,7 +1,13 @@
 <template>
 	<div class="w-full p-3 flex justify-between items-center">
-		<slot></slot>
-		<img class="h-28" :src="product.image" />
+		<div>
+			<img
+				class="h-28"
+				:src="`/storage/images/${product_image}`"
+				v-if="!product_image.startsWith('http')"
+			/>
+			<img class="h-28" :src="product_image" v-else />
+		</div>
 		<div>
 			<h2 class="font-bold">{{ product.name }}</h2>
 			<span>${{ product.price }}</span>
@@ -25,6 +31,7 @@
 				<font-awesome-icon icon="fa-solid fa-minus" />
 			</button>
 		</div>
+		<slot></slot>
 	</div>
 </template>
 
@@ -40,6 +47,7 @@
 		data() {
 			return {
 				product: {},
+				product_image: '',
 				count: this.data.amount,
 				total: this.data.total
 			}
@@ -57,6 +65,7 @@
 				)
 
 				this.product = data
+				this.product_image = data.image
 			},
 			async addCount() {
 				this.$parent.loader = true
