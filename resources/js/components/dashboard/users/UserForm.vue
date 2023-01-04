@@ -25,14 +25,32 @@
 							/>
 						</div>
 					</div>
-					<div class="col-span-6 sm:col-span-3">
-						<label class="block text-sm font-medium text-gray-700">Password</label>
-						<input
-							type="password"
-							name="password"
-							class="w-full mt-1 p-2 block rounded-md border border-gray-300 outline-slate-900 shadow-sm sm:text-sm"
-							v-model="user.password"
-						/>
+					<div class="grid grid-cols-6 gap-6">
+						<div class="col-span-6 sm:col-span-3">
+							<label class="block text-sm font-medium text-gray-700">Role</label>
+							<select
+								name="role"
+								class="w-full mt-1 p-2 block rounded-md border border-gray-300 outline-slate-900 shadow-sm sm:text-sm"
+								v-model="user.role"
+							>
+								<option
+									v-for="(role, index) in roles"
+									:value="role.id"
+									:key="index"
+								>
+									{{ role.name }}
+								</option>
+							</select>
+						</div>
+						<div class="col-span-6 sm:col-span-3">
+							<label class="block text-sm font-medium text-gray-700">Password</label>
+							<input
+								type="password"
+								name="password"
+								class="w-full mt-1 p-2 block rounded-md border border-gray-300 outline-slate-900 shadow-sm sm:text-sm"
+								v-model="user.password"
+							/>
+						</div>
 					</div>
 				</div>
 				<div class="bg-white px-4 py-3 text-right flex justify-between sm:px-6">
@@ -59,13 +77,15 @@
 	export default {
 		data() {
 			return {
-				user: {}
+				user: {},
+				roles: []
 			}
 		},
 		created() {
 			if (!this.$parent.is_create) {
 				this.getUser()
 			}
+			this.getRoles()
 		},
 		methods: {
 			async getUser() {
@@ -75,9 +95,15 @@
 
 				this.user = data
 			},
+			async getRoles() {
+				const { data } = await axios.get('http://127.0.0.1:8000/api/users/roles')
+
+				this.roles = data
+			},
 			hiddeForm() {
 				this.$parent.showUserForm = false
 			},
+			handleChange() {},
 			async handleSubmit() {
 				try {
 					if (this.$parent.is_create) {

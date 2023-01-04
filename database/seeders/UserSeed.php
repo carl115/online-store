@@ -13,7 +13,7 @@ class UserSeed extends Seeder
         User::create([
             'name' => 'Carlos Diaz',
             'email' => 'dcarlos@gmail.com',
-            'password' => bcrypt(123456789)
+            'password' => 123456789
         ])->assignRole('Admin');
 
         User::factory(10)->create();

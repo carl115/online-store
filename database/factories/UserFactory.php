@@ -12,7 +12,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => bcrypt(123456789)
+            'password' => 123456789
         ];
     }
 }

@@ -60,7 +60,7 @@ Route::group(
         Route::get('/', 'getUsers');
         Route::get('/user/{user}', 'getUser');
         Route::get('/userPurchases/{user}', 'getUserPurchases');
-        Route::get('/usersWithRoles', 'usersWithRoles');
+        Route::get('/roles', 'roles');
         Route::post('/create', 'createUser');
         Route::put('/update/{user}', 'updateUser');
         Route::delete('/delete/{user}', 'deleteUser');

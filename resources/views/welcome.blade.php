@@ -3,10 +3,12 @@
         <nav-bar user-data="{{ Auth::user() }}">
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/dashboard/products') }}" class="mx-3 hover:text-white">Dashboard</a>
+                    @role('Admin')
+                        <a href="{{ url('/dashboard/products') }}" class="mr-3 hover:text-white">Dashboard</a>
+                    @endrole
                     <div>
                         <button 
-                            class="mx-3 hover:text-white"      
+                            class="mr-3 hover:text-white"      
                             onmouseover="document.getElementById('userOptions').classList.remove('hidden')"
                             onmouseout="document.getElementById('userOptions').classList.add('hidden')"
                         >

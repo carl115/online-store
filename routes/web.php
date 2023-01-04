@@ -79,7 +79,7 @@ Route::get('/cart', function () {
 })->middleware('auth');
 
 Route::group(
-    ['prefix' => 'dashboard', 'middleware' => 'auth', 'controller' => DashBoardController::class], 
+    ['prefix' => 'dashboard', 'middleware' => ['auth', 'role:Admin'], 'controller' => DashBoardController::class], 
     function () {
         Route::get('/products', 'viewTableProduct')
             ->name('dashboard.products');

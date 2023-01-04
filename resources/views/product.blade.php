@@ -6,7 +6,7 @@
                     <a href="{{ url('/dashboard/products') }}" class="mr-3 hover:text-white">Dashboard</a>
                     <div>
                         <button 
-                            class="mx-3 hover:text-white"      
+                            class="mr-3 hover:text-white"      
                             onmouseover="document.getElementById('userOptions').classList.remove('hidden')"
                             onmouseout="document.getElementById('userOptions').classList.add('hidden')"
                         >

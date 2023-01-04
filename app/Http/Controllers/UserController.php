@@ -20,17 +20,17 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
-    public function usersWithRoles() 
-    {
-        $roles = Role::all();
-        return response()->json($roles, 200);
-    }
-
     public function getUserPurchases(User $user) 
     {
         $user->load('purchases');
 
         return response()->json($user, 200);
+    }
+
+    public function roles(User $user) 
+    {
+        $roles = Role::all();
+        return response()->json($roles, 200);
     }
 
     public function createUser(Request $request) 
@@ -43,6 +43,7 @@ class UserController extends Controller
 
     public function updateUser(Request $request, User $user) 
     {
+        //$user->roles()->sync($request->roles);
         $user->update($request->all());
 
         return response()->noContent();
