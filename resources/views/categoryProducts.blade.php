@@ -3,7 +3,9 @@
         <nav-bar user-data="{{ Auth::user() }}">
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ url('/home') }}" class="mr-3 hover:text-white">Dashboard</a>
+                    @role('Admin')
+                        <a href="{{ url('/dashboard/products') }}" class="mr-3 hover:text-white">Dashboard</a>
+                    @endrole
                     <div>
                         <button 
                             class="mr-3 hover:text-white"      
