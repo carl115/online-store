@@ -14,7 +14,7 @@ use App\Http\Controllers\DashBoardController;
 // Login Routes...
 Route::group(['controller' => LoginController::class], function () {
     Route::get('/login', 'showLoginForm')->name('login');
-    Route::post('/login', 'login');
+    Route::post('/login', 'login')->name('login');
 });
 
 // Logout Routes...
