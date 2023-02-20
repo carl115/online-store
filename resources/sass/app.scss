@@ -1,9 +1,10 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import 'base/reset';
 
-// Variables
-@import 'variables';
+@import 'config/tailwind';
+@import 'config/variables';
+
+@import 'components/productCard';
+@import 'components/slider-main';
 
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
-
+//@import 'bootstrap/scss/bootstrap';

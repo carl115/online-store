@@ -3,8 +3,10 @@ import * as bootstrap from 'bootstrap'
 import axios from 'axios'
 import jquery from 'jquery'
 import Swal from 'sweetalert2'
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
 
 window.Swal = Swal
+//window.Swiper = Swiper
 window.$ = jquery
 window.bootstrap = bootstrap
 window.axios = axios

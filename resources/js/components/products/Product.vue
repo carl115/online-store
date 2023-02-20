@@ -47,7 +47,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="py-10 px-20">
+		<div class="py-10 px-20" v-if="related_products.length > 0">
 			<p class="text-white mb-5">
 				Related products
 				<a
@@ -57,28 +57,7 @@
 					Show more
 				</a>
 			</p>
-			<Splide
-				:options="{
-					perPage: 3,
-					rewind: true
-				}"
-			>
-				<SplideSlide v-for="(related_product, index) in related_products" :key="index">
-					<a
-						:href="`/product/${related_product.id}`"
-						class="bg-gray-600 h-full text-white px-5 py-3 mx-4 rounded-md flex flex-col justify-around hover:cursor-pointer"
-					>
-						<img
-							:src="`/storage/images/${related_product.image}`"
-							v-if="!related_product.image.startsWith('http')"
-						/>
-						<img :src="related_product.image" v-else />
-						<h3 class="text-2xl">{{ related_product.name }}</h3>
-						<p class="text-sm text-slate-300">{{ related_product.description }}</p>
-						<span class="text-xl">$ {{ related_product.price }}</span>
-					</a>
-				</SplideSlide>
-			</Splide>
+			<slider-products :data="related_products"></slider-products>
 		</div>
 		<div class="py-10 px-20">
 			<p class="text-white mb-5">
@@ -87,6 +66,7 @@
 					Show more
 				</a>
 			</p>
+			<!--
 			<Splide
 				:options="{
 					perPage: 3,
@@ -105,6 +85,7 @@
 					</a>
 				</SplideSlide>
 			</Splide>
+			-->
 		</div>
 	</div>
 </template>
@@ -113,8 +94,7 @@
 	import { library } from '@fortawesome/fontawesome-svg-core'
 	import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-	import '@splidejs/splide/css/sea-green'
-	import { Splide, SplideSlide } from '@splidejs/vue-splide'
+	import SliderProducts from '../SliderProducts.vue'
 
 	library.add(faAngleRight, faAngleLeft)
 
@@ -131,8 +111,7 @@
 		},
 		components: {
 			FontAwesomeIcon,
-			Splide,
-			SplideSlide
+			SliderProducts
 		},
 		created() {
 			this.index()

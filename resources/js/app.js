@@ -1,4 +1,5 @@
 import './bootstrap'
+import 'swiper/swiper-bundle.css'
 import { createApp } from 'vue'
 
 import NavBar from './components/navBar/NavBar.vue'

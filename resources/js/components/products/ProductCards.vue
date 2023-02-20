@@ -16,7 +16,7 @@
 		</div>
 		<div v-if="searchValue.length === 0">
 			<div v-for="(category, index) in categories" class="my-4" :key="index">
-				<p class="text-white">
+				<p class="text-white mb-10">
 					Show all products
 					<a
 						:href="`http://127.0.0.1:8000/category/${category.id}/products`"
@@ -24,41 +24,19 @@
 						>{{ category.name }}</a
 					>
 				</p>
-				<Splide
-					:options="{
-						perPage: 3,
-						rewind: true
-					}"
-				>
-					<SplideSlide v-for="(product, index) in category.products" :key="index">
-						<a
-							:href="`/product/${product.id}`"
-							class="bg-gray-600 h-full text-white px-5 py-3 mx-4 rounded-md flex flex-col justify-around hover:cursor-pointer"
-						>
-							<img
-								:src="`storage/images/${product.image}`"
-								v-if="!product.image.startsWith('http')"
-							/>
-							<img :src="product.image" v-else />
-
-							<h3 class="text-2xl">{{ product.name }}</h3>
-							<p class="text-sm text-slate-300">{{ product.description }}</p>
-							<span class="text-xl">$ {{ product.price }}</span>
-						</a>
-					</SplideSlide>
-				</Splide>
+				<slider-products :data="category.products"></slider-products>
 			</div>
 		</div>
 		<div class="py-10 px-20 grid grid-cols-3 gap-y-10" v-else>
 			<a
 				v-for="(product, index) in products"
 				:href="`/product/${product.id}`"
-				class="bg-gray-600 h-full text-white px-5 py-3 mx-4 rounded-md flex flex-col justify-around hover:cursor-pointer"
+				class="product-card bg-gray-600 p-5 rounded-md flex flex-col justify-around"
 				:key="index"
 			>
 				<img :src="product.image" />
 				<h3 class="text-2xl">{{ product.name }}</h3>
-				<p class="text-sm text-slate-300">{{ product.description }}</p>
+				<p class="text-sm text-slate-400">{{ product.description }}</p>
 				<span class="text-xl">$ {{ product.price }}</span>
 			</a>
 		</div>
@@ -66,12 +44,10 @@
 </template>
 
 <script>
-	import '@splidejs/splide/css/sea-green'
-	import { Splide, SplideSlide } from '@splidejs/vue-splide'
-	import Slider from '../Slider.vue'
 	import { library } from '@fortawesome/fontawesome-svg-core'
 	import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 	import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+	import SliderProducts from '../SliderProducts.vue'
 
 	library.add(faMagnifyingGlass)
 
@@ -85,9 +61,7 @@
 		},
 		components: {
 			FontAwesomeIcon,
-			Slider,
-			Splide,
-			SplideSlide
+			SliderProducts
 		},
 		created() {
 			this.getProducts()
